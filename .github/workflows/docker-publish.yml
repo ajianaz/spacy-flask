@@ -28,7 +28,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }} # GitHub sudah menyediakan GITHUB_TOKEN untuk login ke GHCR
+          password: ${{ secrets.GHS_ACTION }} # GitHub sudah menyediakan GITHUB_TOKEN untuk login ke GHCR
           registry: ghcr.io # Pastikan registry-nya menggunakan ghcr.io untuk GitHub Container Registry
 
       - name: Build and push Docker image
@@ -36,6 +36,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/light-embedding:latest # Pastikan nama image dan tag sesuai
+          tags: ghcr.io/${{ github.repository_owner }}/spacy-flask:latest # Pastikan nama image dan tag sesuai
           cache-from: type=gha
           cache-to: type=gha,mode=max
