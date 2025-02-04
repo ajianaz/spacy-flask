@@ -1,0 +1,24 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environments
+venv/
+env/
+
+# Docker files
+**/Dockerfile
+**/docker-compose.yml
+
+# Build and dependency directories
+*.egg-info/
+dist/
+build/
+*.log
+
+# Environment variables files
+.env
+
+# Docker ignored files (to avoid copying unnecessary files to Docker container)
+.dockerignore
