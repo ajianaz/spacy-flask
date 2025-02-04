@@ -29,6 +29,7 @@ jobs:
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }} # GitHub sudah menyediakan GITHUB_TOKEN untuk login ke GHCR
+          registry: ghcr.io # Pastikan registry-nya menggunakan ghcr.io untuk GitHub Container Registry
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
