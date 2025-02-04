@@ -7,10 +7,6 @@ __pycache__/
 venv/
 env/
 
-# Docker files
-**/Dockerfile
-**/docker-compose.yml
-
 # Build and dependency directories
 *.egg-info/
 dist/
@@ -19,6 +15,3 @@ build/
 
 # Environment variables files
 .env
-
-# Docker ignored files (to avoid copying unnecessary files to Docker container)
-.dockerignore

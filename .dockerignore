@@ -1,0 +1,24 @@
+# Ignore .git directory
+.git/
+
+# Ignore .gitignore itself
+.gitignore
+
+# Ignore Docker Compose file (if needed)
+docker-compose.yml
+
+# Python cache and bytecode
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+env/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# Environment variables file
+.env
