@@ -1,42 +1,32 @@
+# Gunakan image dasar Python
 FROM python:3.9-slim
 
-# Set working directory in the container
+# Set working directory di dalam container
 WORKDIR /app
 
-# Install system dependencies required by spaCy
+# Install dependencies yang diperlukan untuk spaCy dan en_core_web_md
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    libssl-dev \
-    libbz2-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    wget \
-    curl \
-    llvm \
-    libncurses5-dev \
-    libncursesw5-dev \
-    xz-utils \
-    tk-dev \
+    gcc \
     libffi-dev \
-    liblzma-dev \
-    zlib1g-dev \
-    git \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements.txt into the container
+# Install numpy terlebih dahulu untuk memastikan versi yang benar
+RUN pip install --no-cache-dir numpy==1.23.5
+
+# Salin file requirements.txt ke dalam container
 COPY requirements.txt .
 
-# Install Python dependencies
+# Install dependensi dari requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire app into the container
+# Salin seluruh kode aplikasi ke dalam container
 COPY . .
 
 # Download spaCy model
 RUN python -m spacy download en_core_web_md
 
-# Expose port for Flask
+# Expose port untuk Flask
 EXPOSE 5000
 
-# Run the application using Gunicorn
+# Tentukan perintah untuk menjalankan aplikasi menggunakan Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
