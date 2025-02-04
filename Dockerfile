@@ -10,11 +10,14 @@ COPY requirements.txt .
 # Install dependensi dari requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Salin seluruh kode aplikasi ke dalam container
-COPY . .
+# Install spaCy
+RUN pip install --no-cache-dir spacy
 
 # Download spaCy model
 RUN python -m spacy download en_core_web_md
+
+# Salin seluruh kode aplikasi ke dalam container
+COPY . .
 
 # Expose port untuk Flask
 EXPOSE 5000
